@@ -1,0 +1,268 @@
+pip install selenium 
+
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://www.spacelist.ca/listings/bc/victoria/retail/for-lease"
+response = requests.get(url)
+response = response.content
+soup = BeautifulSoup(response, 'html.parser')
+divclass = soup.find('div class')
+main = soup.find('main')
+dc = main.find('data-center', class_ = 'main')
+
+prop = main.find('"div class="listing-result cell shrink"', class_ = 'main')
+#print(prop)
+
+results = soup.find_all('div', class_= 'listing-result cell shrink')
+#results
+
+import pandas as pd 
+results_clean = []
+
+for result in results:
+  is_it_retail = result.find('div', class_ = 'heavy-font')
+  area = result.find('div', class_= 'dark-font')
+  rent = result.find('div', class_= 'rent_per_month')
+  result = [ is_it_retail.text, area.text, rent.text ]
+  results_clean.append(result)
+
+#print(results_clean)
+
+df = pd.DataFrame(results_clean, columns = ['is_it_retail', 'area', 'rent'])
+
+results2 = soup.find_all('div', class_= 'cell auto small-font flat-line-height-taller right-cell-padding')
+#results2
+
+results_clean2 = []
+
+for result in results2: 
+  address = result.find('div', class_ = 'dark-font')
+  print(f'address: {address.text}')
+
+
+for result in results2:
+  address2 = result.find('div', class_ = 'dark-font')
+  address = [address2.text]
+  results_clean2.append(address)
+
+df2 = pd.DataFrame(results_clean2, columns = ['address'])
+#df2
+
+#result_final_page1 = pd.merge(df, df2, on='address', how='right')
+
+#result_final_page1
+
+result_final_page1 = pd.concat([df, df2], axis=1)
+result_final_page1
+
+url = "https://www.spacelist.ca/listings/bc/victoria/retail/for-lease/page/2"
+response = requests.get(url)
+response = response.content
+soup = BeautifulSoup(response, 'html.parser')
+divclass = soup.find('div class')
+main = soup.find('main')
+dc = main.find('data-center', class_ = 'main')
+
+prop = main.find('"div class="listing-result cell shrink"', class_ = 'main')
+#print(prop)
+
+results = soup.find_all('div', class_= 'listing-result cell shrink')
+#results
+
+import pandas as pd 
+results_clean = []
+
+for result in results:
+  is_it_retail = result.find('div', class_ = 'heavy-font')
+  area = result.find('div', class_= 'dark-font')
+  rent = result.find('div', class_= 'rent_per_month')
+  result = [ is_it_retail.text, area.text, rent.text ]
+  results_clean.append(result)
+
+#print(results_clean)
+
+df = pd.DataFrame(results_clean, columns = ['is_it_retail', 'area', 'rent'])
+
+results2 = soup.find_all('div', class_= 'cell auto small-font flat-line-height-taller right-cell-padding')
+#results2
+
+results_clean2 = []
+
+for result in results2: 
+  address = result.find('div', class_ = 'dark-font')
+  print(f'address: {address.text}')
+
+
+for result in results2:
+  address2 = result.find('div', class_ = 'dark-font')
+  address = [address2.text]
+  results_clean2.append(address)
+
+df2 = pd.DataFrame(results_clean2, columns = ['address'])
+#df2
+
+
+result_final_page2 = pd.concat([df, df2], axis=1)
+result_final_page2
+
+url = "https://www.spacelist.ca/listings/bc/victoria/retail/for-lease/page/3"
+response = requests.get(url)
+response = response.content
+soup = BeautifulSoup(response, 'html.parser')
+divclass = soup.find('div class')
+main = soup.find('main')
+dc = main.find('data-center', class_ = 'main')
+
+prop = main.find('"div class="listing-result cell shrink"', class_ = 'main')
+#print(prop)
+
+results = soup.find_all('div', class_= 'listing-result cell shrink')
+#results
+
+import pandas as pd 
+results_clean = []
+
+for result in results:
+  is_it_retail = result.find('div', class_ = 'heavy-font')
+  area = result.find('div', class_= 'dark-font')
+  rent = result.find('div', class_= 'rent_per_month')
+  result = [ is_it_retail.text, area.text, rent.text ]
+  results_clean.append(result)
+
+#print(results_clean)
+
+df = pd.DataFrame(results_clean, columns = ['is_it_retail', 'area', 'rent'])
+
+results2 = soup.find_all('div', class_= 'cell auto small-font flat-line-height-taller right-cell-padding')
+#results2
+
+results_clean2 = []
+
+for result in results2: 
+  address = result.find('div', class_ = 'dark-font')
+  print(f'address: {address.text}')
+
+
+for result in results2:
+  address2 = result.find('div', class_ = 'dark-font')
+  address = [address2.text]
+  results_clean2.append(address)
+
+df2 = pd.DataFrame(results_clean2, columns = ['address'])
+#df2
+
+
+result_final_page3 = pd.concat([df, df2], axis=1)
+result_final_page3
+
+url = "https://www.spacelist.ca/listings/bc/victoria/retail/for-lease/page/4"
+response = requests.get(url)
+response = response.content
+soup = BeautifulSoup(response, 'html.parser')
+divclass = soup.find('div class')
+main = soup.find('main')
+dc = main.find('data-center', class_ = 'main')
+
+prop = main.find('"div class="listing-result cell shrink"', class_ = 'main')
+#print(prop)
+
+results = soup.find_all('div', class_= 'listing-result cell shrink')
+#results
+
+import pandas as pd 
+results_clean = []
+
+for result in results:
+  is_it_retail = result.find('div', class_ = 'heavy-font')
+  area = result.find('div', class_= 'dark-font')
+  rent = result.find('div', class_= 'rent_per_month')
+  result = [ is_it_retail.text, area.text, rent.text ]
+  results_clean.append(result)
+
+#print(results_clean)
+
+df = pd.DataFrame(results_clean, columns = ['is_it_retail', 'area', 'rent'])
+
+results2 = soup.find_all('div', class_= 'cell auto small-font flat-line-height-taller right-cell-padding')
+#results2
+
+results_clean2 = []
+
+for result in results2: 
+  address = result.find('div', class_ = 'dark-font')
+  print(f'address: {address.text}')
+
+
+for result in results2:
+  address2 = result.find('div', class_ = 'dark-font')
+  address = [address2.text]
+  results_clean2.append(address)
+
+df2 = pd.DataFrame(results_clean2, columns = ['address'])
+#df2
+
+
+result_final_page4 = pd.concat([df, df2], axis=1)
+result_final_page4
+
+url = "https://www.spacelist.ca/listings/bc/victoria/retail/for-lease/page/5"
+response = requests.get(url)
+response = response.content
+soup = BeautifulSoup(response, 'html.parser')
+divclass = soup.find('div class')
+main = soup.find('main')
+dc = main.find('data-center', class_ = 'main')
+
+prop = main.find('"div class="listing-result cell shrink"', class_ = 'main')
+#print(prop)
+
+results = soup.find_all('div', class_= 'listing-result cell shrink')
+#results
+
+import pandas as pd 
+results_clean = []
+
+for result in results:
+  is_it_retail = result.find('div', class_ = 'heavy-font')
+  area = result.find('div', class_= 'dark-font')
+  rent = result.find('div', class_= 'rent_per_month')
+  result = [ is_it_retail.text, area.text, rent.text ]
+  results_clean.append(result)
+
+#print(results_clean)
+
+df = pd.DataFrame(results_clean, columns = ['is_it_retail', 'area', 'rent'])
+
+results2 = soup.find_all('div', class_= 'cell auto small-font flat-line-height-taller right-cell-padding')
+#results2
+
+results_clean2 = []
+
+for result in results2: 
+  address = result.find('div', class_ = 'dark-font')
+  print(f'address: {address.text}')
+
+
+for result in results2:
+  address2 = result.find('div', class_ = 'dark-font')
+  address = [address2.text]
+  results_clean2.append(address)
+
+df2 = pd.DataFrame(results_clean2, columns = ['address'])
+#df2
+
+
+result_final_page5 = pd.concat([df, df2], axis=1)
+result_final_page5
+
+df_new1 = result_final_page1.append(result_final_page2)
+
+df_new2 = df_new1.append(result_final_page3)
+
+df_new3 = df_new2.append(result_final_page4)
+
+df_new4 = df_new3.append(result_final_page5)
+
+df_new4.to_csv('df_full.csv') 
+
